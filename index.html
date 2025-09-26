@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Finder: Career Orientation Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo" data-page="home">
+                <i data-lucide="zap"></i>
+                <span>Path Finder</span>
+            </a>
+            <nav class="main-nav">
+                <a href="#" class="nav-link active" data-page="home"><i data-lucide="home"></i> Home</a>
+                <a href="#" class="nav-link" data-page="quiz"><i data-lucide="file-text"></i> Quiz</a>
+                <a href="#" class="nav-link" data-page="chatbot"><i data-lucide="bot"></i> AI Chat</a>
+                <a href="#" class="nav-link" data-page="careers"><i data-lucide="briefcase"></i> Careers</a>
+                <a href="#" class="nav-link" data-page="community"><i data-lucide="users"></i> Community</a>
+                <a href="#" class="nav-link" data-page="about"><i data-lucide="user-circle-2"></i> About</a>
+            </nav>
+            <div class="header-actions">
+                <button id="theme-toggle-btn" class="theme-toggle">
+                    <i data-lucide="sun" class="sun-icon"></i>
+                    <i data-lucide="moon" class="moon-icon"></i>
+                </button>
+                <button class="btn btn-primary get-started-btn" data-page="quiz">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home-page" class="page active">
+            <div class="hero-section">
+                <div class="container text-center">
+                    <h1 class="hero-title">Find Your Future. <span class="text-gradient">Start Your Journey.</span></h1>
+                    <p class="hero-subtitle">Our AI-powered platform analyzes your interests, aptitude, and personality to illuminate the perfect career path for you.</p>
+                    <button class="btn btn-primary btn-lg" data-page="quiz">
+                        <span>Take the Free Quiz</span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="container how-it-works">
+                <h2 class="section-title">How Path Finder Works</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i data-lucide="file-text"></i></div>
+                        <h3>1. Take the Quiz</h3>
+                        <p>Answer our structured quiz to evaluate your interests, strengths, and personality traits.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i data-lucide="bot"></i></div>
+                        <h3>2. Chat with AI</h3>
+                        <p>Our AI chatbot analyzes your results and chats with you to refine your career goals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i data-lucide="briefcase"></i></div>
+                        <h3>3. Explore & Connect</h3>
+                        <p>Receive a personalized roadmap, explore careers, and connect with peers in our community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="container">
+                    <h2 class="section-title">By the Numbers</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3 class="stat-number text-gradient">50K+</h3>
+                            <p class="stat-label">Quizzes Taken</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number text-gradient">300+</h3>
+                            <p class="stat-label">Careers Explored</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number text-gradient">10K+</h3>
+                            <p class="stat-label">Community Members</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 class="stat-number text-gradient">95%</h3>
+                            <p class="stat-label">User Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="quiz-page" class="page hidden">
+            <div class="container">
+                <div id="quiz-container" class="quiz-box">
+                    </div>
+                <div id="quiz-results-container" class="quiz-box text-center hidden">
+                    <i data-lucide="check-circle" class="quiz-complete-icon"></i>
+                    <h2>Quiz Complete!</h2>
+                    <p>Here is a reflection of your interests based on your answers:</p>
+                    <div class="chart-container">
+                        <canvas id="results-chart"></canvas>
+                    </div>
+                    <p id="quiz-answers-summary" class="quiz-summary-box"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="chatbot-page" class="page hidden">
+            <div class="container">
+                <div class="chatbot-container">
+                    <div class="chatbot-header">
+                        <i data-lucide="bot"></i>
+                        <div>
+                            <h2 class="chatbot-title">AI Career Coach</h2>
+                            <p class="chatbot-status">Online</p>
+                        </div>
+                    </div>
+                    <div id="chat-window" class="chatbot-window">
+                        </div>
+                    <div class="chatbot-input-area">
+                        <form id="chat-form" class="chat-form">
+                            <input type="text" id="chat-input" placeholder="Ask about careers, skills, or your results..." autocomplete="off">
+                            <button type="submit" id="chat-submit-btn">
+                                <i data-lucide="send"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="careers-page" class="page hidden">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">Explore Career Paths</h2>
+                    <p class="section-subtitle">Discover detailed information about various careers including required qualifications, skillsets, and job outlooks.</p>
+                </div>
+                <div class="filters-container">
+                    <div class="search-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="career-search" placeholder="Search for a career...">
+                    </div>
+                    <div class="select-wrapper">
+                        <select id="career-filter">
+                            <option>All</option>
+                            <option>Technology</option>
+                            <option>Creative</option>
+                            <option>Business</option>
+                            <option>Healthcare</option>
+                            <option>Finance</option>
+                            <option>Trades</option>
+                            <option>Education</option>
+                        </select>
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                </div>
+                <div id="careers-grid" class="careers-grid">
+                    </div>
+            </div>
+        </section>
+        
+        <section id="community-page" class="page hidden">
+            <div class="container community-container">
+                <div class="text-center">
+                    <h2 class="section-title">Community Hub</h2>
+                    <p class="section-subtitle">Connect with peers, share your journey, and learn from others on the same path.</p>
+                </div>
+
+                <div class="post-form-container">
+                    <h3>Share Your Thoughts</h3>
+                    <form id="post-form">
+                        <textarea id="post-textarea" placeholder="What's on your mind? Ask a question or share an experience..."></textarea>
+                        <button type="submit" class="btn btn-primary">
+                            <i data-lucide="send"></i>
+                            <span>Post</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="community-feed" class="community-feed">
+                    </div>
+            </div>
+        </section>
+
+        <section id="about-page" class="page hidden">
+             <div class="container">
+                <div class="about-content">
+                    <h2 class="section-title text-center">About Path Finder</h2>
+                    <div class="about-card">
+                        <h3>Our Aim</h3>
+                        <p>To develop a user-friendly web platform that assists students and youth in discovering the most suitable career paths by analyzing their interests, aptitude, and personality traits using quizzes and AI-powered recommendations.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Objectives</h3>
+                        <ul class="objectives-list">
+                            <li><i data-lucide="brain-circuit"></i><span>Design a structured quiz system to evaluate user interests and cognitive strengths.</span></li>
+                            <li><i data-lucide="bot"></i><span>Build an AI chatbot that analyzes quiz responses and chats with users to understand their goals and preferences.</span></li>
+                            <li><i data-lucide="users"></i><span>Foster a community for users to connect, share, and support each other's career journeys.</span></li>
+                            <li><i data-lucide="briefcase"></i><span>Offer detailed information about various careers including required qualifications, skillsets, and job outlooks.</span></li>
+                            <li><i data-lucide="star"></i><span>Ensure the platform is accessible and engaging for students from all backgrounds.</span></li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" data-page="home">
+                    <i data-lucide="zap"></i>
+                    <span>Path Finder</span>
+                </a>
+                <p>A Career Orientation Platform for Youth.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li><a href="#" data-page="quiz">Quiz</a></li>
+                    <li><a href="#" data-page="careers">Careers</a></li>
+                    <li><a href="#" data-page="community">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>Kolhapur, Maharashtra, India</p>
+                <p>contact@pathfinder.dev</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Path Finder. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from 'https://esm.run/@google/generative-ai';
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
